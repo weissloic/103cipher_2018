@@ -30,10 +30,8 @@ PREFIX	=	$(CYAN)"[MAIN] "
 all:	$(NAME)
 
 $(NAME):
-		@echo "$(GREEN)[LIB] $(BLUE)Compiling...$(NC)"
-		@make -sC lib/my
 		@echo "$(PREFIX)$(BLUE)Compiling...$(WHITE)"
-		@$(CC) $(MAIN) $(SRC) -o $(NAME) $(CFLAGS) $(CINC) $(LDFLAGS)
+		@$(CC) $(MAIN) $(SRC) -o $(NAME) $(CFLAGS) $(CINC)
 		@echo "$(PREFIX)$(BLUE)Compiled ! $(NAME)$(NC)"
 
 clean :
