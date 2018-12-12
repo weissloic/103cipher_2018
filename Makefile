@@ -17,6 +17,9 @@ NAME_TEST = unit_tests
 
 MAIN	=	main.c
 
+SRC =       key.c     \
+            message.c \
+
 RED     = \033[0;31m
 YELLOW  = \033[1;33m
 CYAN    = \033[0;36m
