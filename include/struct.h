@@ -10,12 +10,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-typedef struct vector {
-    int x;
-    int y;
-    int z;
-} vector_t;
-
 typedef struct matrix {
     int nb_lines;
     int nb_cols;
