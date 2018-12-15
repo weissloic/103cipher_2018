@@ -31,9 +31,4 @@ void init_matrix_key(char *key, matrix_t *matrix)
                 matrix->matrix[i][j] = key[i * matrix->nb_cols + j];
         }
     }
-    for (int i = 0; i < matrix->nb_lines; i++) {
-        for (int j = 0; j != matrix->nb_cols; j++)
-            printf("%d ", matrix->matrix[i][j]);
-        printf("\n");
-    }
 }

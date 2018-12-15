@@ -26,7 +26,6 @@ matrix_t *mult_matrix(matrix_t *key, matrix_t *mes, matrix_t *result)
             result->matrix[i][j] = stock;
         }
     }
-    print_matrix(result);
     return (result);
 }
 
@@ -38,17 +37,18 @@ int main(int ac, char **av)
 
     char *message = av[1];
     char *key = av[2];
-    printf("%s\n%s\n", av[1], av[2]);
 
     find_key_matrix_size(matrix_key, key);
     find_mes_matrix_size(matrix_mess, matrix_key, message);
 
     printf("Key matrix:\n");
     init_matrix_key(key, matrix_key);
+    print_matrix(matrix_key);
     printf("\n");
-    printf("matrix message :\n");
     init_matrix_message(message, matrix_mess);
     result = mult_matrix(matrix_key, matrix_mess, result);
+    printf("Encrypted message:\n");
+    print_result(result);
 
     free_malloc(matrix_key);
     free_malloc(matrix_mess);

@@ -24,3 +24,4 @@ void init_matrix_key(char *, matrix_t *);
 void print_matrix(matrix_t *);
 void free_malloc(matrix_t *);
 void malloc_matrix(matrix_t *);
+void print_result(matrix_t *);
