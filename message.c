@@ -7,11 +7,17 @@
 
 #include "include/struct.h"
 
+void find_mes_matrix_size(matrix_t *matrix, matrix_t *key, char *message)
+{
+    matrix->nb_cols = key->nb_cols;
+    matrix->nb_lines = strlen(message) / matrix->nb_cols;
+    if (strlen(message) % matrix->nb_cols != 0)
+        matrix->nb_lines++;
+}
+
 void init_matrix_message(char *message, matrix_t *matrix)
 {
-    matrix->matrix = malloc(sizeof(int *) * matrix->nb_lines);
-    for (int i = 0; i < matrix->nb_lines; i++)
-        matrix->matrix[i] = malloc(sizeof(int) * matrix->nb_cols);
+    malloc_matrix(matrix);
     init_matrix(matrix);
 
     for (int i = 0; i < matrix->nb_lines; i++) {

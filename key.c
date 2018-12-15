@@ -20,9 +20,7 @@ void find_key_matrix_size(matrix_t *matrix, char *key)
 
 void init_matrix_key(char *key, matrix_t *matrix)
 {
-    matrix->matrix = malloc(sizeof(int *) * matrix->nb_lines + 1);
-    for (int i = 0; i < matrix->nb_lines; i++)
-        matrix->matrix[i] = malloc(sizeof(int) * matrix->nb_cols + 1);
+    malloc_matrix(matrix);
     init_matrix(matrix);
 
     for (int i = 0; i < matrix->nb_lines; i++) {

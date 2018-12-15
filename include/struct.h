@@ -18,5 +18,9 @@ typedef struct matrix {
 
 void init_matrix(matrix_t *);
 void find_key_matrix_size(matrix_t *, char *);
+void find_mes_matrix_size(matrix_t *, matrix_t *, char *);
 void init_matrix_message(char *, matrix_t *);
 void init_matrix_key(char *, matrix_t *);
+void print_matrix(matrix_t *);
+void free_malloc(matrix_t *);
+void malloc_matrix(matrix_t *);
