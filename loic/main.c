@@ -5,71 +5,55 @@
 ** description
 */
 
-#include "../include/struct.h"
-#include <string.h>
-#include <math.h>
+#include "include/struct.h"
 
-
-
-double **init_matrice(double **matrix)
+void init_matrix(matrix_t *matrix)
 {
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++)
-            matrix[i][j] = 0.00;
+    for (int i = 0; i < matrix->nb_lines; i++) {
+        for (int j = 0; j < matrix->nb_cols; j++)
+            matrix->matrix[i][j] = 0;
     }
-    return (matrix);
 }
 
-void print_key_matrix(char *matrix_key, matrix_t  *matrix_key, char **av)
+void calc_deter(matrix_t *matrix_key)
 {
-    int matrix_lenght = strlen(av[1]);
-
-    if (matrix_lenght <= 4) {
-    matrix_two(matrix_key);
-    }
-    else if (matrix_lenght <= 9) {
-        matrix_three(matrix_key);
-    }
-    printf("%d", matrix_lenght);
+    matrix_key->deter_two = (matrix_key->matrix[0][0] * matrix_key->matrix[1][1]) - (matrix_key->matrix[0][1] * matrix_key->matrix[1][0]);
+    matrix_key->deter_three = (matrix_key->matrix[0][0] * matrix_key->matrix[1][1] * matrix_key->matrix[2][2]) + (matrix_key->matrix[0][1] * matrix_key->matrix[1][2] * matrix_key->matrix[2][0]) + (matrix_key->matrix[0][2] * matrix_key->matrix[1][0] * matrix_key->matrix[2][1]) - (matrix_key->matrix[0][2] * matrix_key->matrix[1][1] * matrix_key->matrix[2][0]) - (matrix_key->matrix[0][1] * matrix_key->matrix[1][0] * matrix_key->matrix[2][2]) - (matrix_key->matrix[0][0] * matrix_key->matrix[1][2] * matrix_key->matrix[2][1]);
 }
 
-void matrix_two(matrix_t *matrix_key)
+void free_malloc(matrix_t *matrix)
 {
-    matrix_key->nb_lines = 2;
-    matrix_key->nb_cols = 2;
-    matrix_key->matrix = malloc(sizeof(int *) * matrix_key->nb_lines);
-    for (int i = 0; i < matrix_key->nb_cols; i++)
-        matrix_key->matrix[i] = malloc(sizeof(char) * matrix_key->nb_cols);
-    stock_matrix(matrix_key);
-}
-
-void matrix_three (matrix_t  *matrix_key)
-{
-    matrix_key->nb_lines = 3;
-    matrix_key->nb_cols = 3;
-    matrix_key->matrix = malloc(sizeof(int *) * matrix_key->nb_lines);
-    for (int i = 0; i < matrix_key->nb_cols; i++)
-        matrix_key->matrix[i] = malloc(sizeof(char) * matrix_key->nb_cols);
-
-    stock_matrix(matrix_key);
-}
-
-void stock_matrix(char *matrix_tab, matrix_t  *matrix_key)
-{
-    for(int i = 0; matrix_tab[i] != '\0'; i++) {
-        for(int j = 0; matrix_tab[i] <= matrix_key->nb_cols; j++) {
-            matrix_key->matrix[i][j] = matrix_tab[i];
-        }
-    }
+    for (int i = 0; i < matrix->nb_lines; i++)
+        free(matrix->matrix[i]);
+    free(matrix->matrix);
+    free(matrix);
 }
 
 int main(int ac, char **av)
 {
-    int i = 0;
-    int matrix_lenght = strlen(av[1]);
+    matrix_t *matrix_key = malloc(sizeof(matrix_t));
+    matrix_t *matrix_mess = malloc(sizeof(matrix_t));
 
-    matrix_t  *matrix_key = malloc(sizeof(matrix_t));
-    print_key_matrix(av[1]);
+    char *message = av[1];
+    char *key = av[2];
+    printf("%s\n%s\n", av[1], av[2]);
 
-    return (0);
+
+    find_key_matrix_size(matrix_key, key);
+
+    matrix_mess->nb_cols = matrix_key->nb_cols;
+    matrix_mess->nb_lines = strlen(message) / matrix_mess->nb_cols;
+    if (strlen(message) % matrix_mess->nb_cols != 0)
+        matrix_mess->nb_lines++;
+
+    printf("Key matrix:\n");
+    init_matrix_key(key, matrix_key);
+    calc_deter(matrix_key);
+    printf("%d", matrix_key->deter_three);
+    printf("\n");
+    printf("matrix message :\n");
+    init_matrix_message(message, matrix_mess);
+
+    free_malloc(matrix_key);
+    free_malloc(matrix_mess);
 }
