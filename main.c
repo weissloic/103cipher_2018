@@ -46,16 +46,10 @@ int main(int ac, char **av)
 
     find_key_matrix_size(matrix_key, key);
     find_mes_matrix_size(matrix_mess, matrix_key, message);
-
-    printf("Key matrix:\n");
-    init_matrix_key(key, matrix_key);
-    print_matrix(matrix_key);
-    printf("\n");
-    init_matrix_message(message, matrix_mess);
-    result = mult_matrix(matrix_key, matrix_mess, result);
-    printf("Encrypted message:\n");
-    print_result(result);
-    printf("\n");
+    if (flag == 0)
+        encrypted_func(matrix_key, matrix_mess, result, message, key);
+    if (flag == 1)
+        encrypted_func(matrix_key, matrix_mess, result, message, key);
     free_malloc(matrix_key);
     free_malloc(matrix_mess);
 }
