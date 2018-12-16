@@ -25,3 +25,4 @@ void print_matrix(matrix_t *);
 void free_malloc(matrix_t *);
 void malloc_matrix(matrix_t *);
 void print_result(matrix_t *);
+matrix_t *mult_matrix(matrix_t *, matrix_t *, matrix_t *);

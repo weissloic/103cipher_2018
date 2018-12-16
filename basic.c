@@ -19,7 +19,7 @@ void print_matrix(matrix_t *matrix)
     for (int i = 0; i != matrix->nb_lines; i++) {
         for (int j = 0; j != matrix->nb_cols; j++) {
             printf("%d", matrix->matrix[i][j]);
-            if (j != 2)
+            if (j != matrix->nb_cols - 1)
                 printf("\t");
         }
         printf("\n");

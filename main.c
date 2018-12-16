@@ -31,6 +31,12 @@ matrix_t *mult_matrix(matrix_t *key, matrix_t *mes, matrix_t *result)
 
 int main(int ac, char **av)
 {
+    if (ac != 4)
+        return (84);
+    int flag = atoi(av[3]);
+    if (flag != 1 && flag != 0)
+        return (84);
+
     matrix_t *matrix_key = malloc(sizeof(matrix_t));
     matrix_t *matrix_mess = malloc(sizeof(matrix_t));
     matrix_t *result = malloc(sizeof(matrix_t));
@@ -49,7 +55,7 @@ int main(int ac, char **av)
     result = mult_matrix(matrix_key, matrix_mess, result);
     printf("Encrypted message:\n");
     print_result(result);
-
+    printf("\n");
     free_malloc(matrix_key);
     free_malloc(matrix_mess);
 }

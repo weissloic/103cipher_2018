@@ -9,13 +9,17 @@
 
 void find_key_matrix_size(matrix_t *matrix, char *key)
 {
-    if (strlen(key) < 5) {
+    if (strlen(key) >= 1 && strlen(key) < 5) {
         matrix->nb_cols = 2;
         matrix->nb_lines = 2;
     } else if (strlen(key) < 10) {
         matrix->nb_cols = 3;
         matrix->nb_lines = 3;
-    }
+    } else if (strlen(key) < 17) {
+        matrix->nb_cols = 4;
+        matrix->nb_lines = 4;
+    } else
+        exit (84);
 }
 
 void init_matrix_key(char *key, matrix_t *matrix)
